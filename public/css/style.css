@@ -1,0 +1,32 @@
+.main-head{
+	background:#6F5499;
+	min-height:50px;
+	line-height:100px;
+	color:#fff;
+}
+header h1{
+	font-size:28px;
+	line-height:100px;
+}
+.atm-main-block{
+	margin-top:40px;
+	background:#dedede;
+	padding:20px;
+	margin:40px 0 0;
+}
+.enter-money-block{
+	direction:RTL;
+}
+.atm-window{
+	border:#ccc solid 1px;
+	padding:20px;
+}
+.note-chart p{
+	font-weight:700;
+	color:#333;margin:5px 0;
+}
+.floated
+{
+float: right;
+}
+.note-chart span{font-weight:700;font-size:15px;}
