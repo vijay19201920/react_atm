@@ -19,6 +19,11 @@ class Rightcolumn extends Component {
 	
 	};
 
+	componentDidMount(){
+
+
+	}
+
 render(){
 
 //using the method destruction
