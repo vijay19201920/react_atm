@@ -6,9 +6,10 @@ constructor(){
 	super();
 
 	this.state = {
-		phonenumber: "",
+		phone: "",
 		email: "",
-		password: ""
+		password: "",
+		message: ""
 		};
 		
 this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,7 +18,7 @@ this.handleSubmit = this.handleSubmit.bind(this);
 
 handlePhone = (event) => {
 	this.setState({
-	phonenumber: event.target.value
+	phone: event.target.value
 	})
 }
 
@@ -39,45 +40,54 @@ handleSubmit = (event) => {
 
 console.log(this.state);
 
-  //event.preventDefault();
+
+  event.preventDefault();
   //  const data = new FormData(this.state);
 	
 	//console.log(data);
     
 	 fetch('http://spainoption-fint/api/register', {
       method: 'POST',
-	  mode :'no-cors',
+	 // mode :'no-cors',  
 		 headers: {
 				Accept: 'application/json',
 						'Access-Control-Allow-Origin': '*',
 						'Content-Type': 'application/json',
 						'Access-Control-Allow-Credentials': 'true',
-						'credentials': 'same-origin',
-						'X-localization' :'en'
+						'credentials': 'same-origin'
 			},
       body: JSON.stringify(this.state)
     }).then(response => {
-            console.log(response)
-        })
+            console.log(response);
+			console.log(response.UserName);
+			console.log(response.status);
+			response.setstate({
+				message : response.status
+				
+			})
+			
+			
+		})
         .catch(error =>{
             console.log(error)
         })
 
 
 //this function is used to restrict the form to reload
-event.preventDefault();
+//event.preventDefault();
 
 }
 
 
 render(){
 
-	const {phonenumber , email , password } = this.state 
+	const {phone , email , password } = this.state 
 
 return (
 		
 
 		<div>
+		<div> {this.state.message} </div>
 			<form onSubmit ={this.handleSubmit}>
 					  <div className="container">
 						<h1 className = "signin">Register</h1>
@@ -85,7 +95,7 @@ return (
 						<hr/>
 						
 						<label><b>Phone</b></label>
-						<input type="text" value = {phonenumber} onChange = {this.handlePhone} placeholder="Enter Phone number"  />
+						<input type="text" value = {phone} onChange = {this.handlePhone} placeholder="Enter Phone number"  />
 						
 						<label ><b>Email</b></label>
 						<input type="text" value = {email} onChange = {this.handleEmail} placeholder="Enter Email" />
