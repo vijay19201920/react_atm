@@ -1,8 +1,10 @@
 import React,{Component} from 'react';
 import Rightcolumn from './Rightcolumn.js';
-import { Link } from "react-router-dom";
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux'; 
+import { userSignupRequest } from '../actions/signupActions';
 
-class Registrationform extends Component {
+class LoginRegister extends Component {
 constructor(){
 	super();
 
@@ -10,7 +12,7 @@ constructor(){
 		phone: "",
 		email: "",
 		password: "",
-		message: "inicial"
+		message: ""
 		};
 		
 this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,6 +36,12 @@ handlePassword = (event) => {
 	password: event.target.value
 	})
 }
+
+ handleSubmited(event) {
+        event.preventDefault();
+        this.props.userSignupRequest({...this.state})
+    } 
+
 
 handleSubmit = (event) => {
 
@@ -88,8 +96,20 @@ return (
 		
 
 		<div>
-		<div> {this.state.message} </div>
-			<form onSubmit ={this.handleSubmit}>
+		       <section id="page-title">
+
+                    <div className="container clearfix" >
+                        <h1>My Account</h1>
+                        <ol className="breadcrumb">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/">Pages</a></li>
+                            <li className="active"> <a href="/">Login</a></li>
+                        </ol>
+                    </div>
+
+                </section>
+		<div> {this.props.registerMessage} </div>
+			<form onSubmit ={this.handleSubmited}>
 					  <div className="container">
 						<h1 className = "signin">Register</h1>
 						<p>Please fill in this form to create an account.</p>
@@ -109,8 +129,7 @@ return (
 					  </div>
 
 					  <div className="container signin">
-						<p>Already have an account?.</p>
-						<Link to="/"> Sign in</Link>
+						<p>Already have an account? <a href="#">Sign in</a>.</p>
 					  </div>
 					</form>
 		</div>
@@ -122,4 +141,12 @@ return (
 
 }
 
-export default Registrationform
+function mapStateToProps(state){
+      return { 
+         registerMessage: state.data
+      }
+}
+function mapDispatchToProps(dispatch) {
+      return bindActionCreators({userSignupRequest: userSignupRequest}, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps ) (LoginRegister);
