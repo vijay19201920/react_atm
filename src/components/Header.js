@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Form from './Form.js';
-
+import { Link } from "react-router-dom";
 
 
 class Header extends Component {
@@ -11,7 +11,16 @@ class Header extends Component {
 				<header id="header-wrap">
 					<div class="container">
 						<header class="text-center main-head">
-							<h1>ATM Money Dispenser</h1>
+						<div class = "menu">
+						
+							<h1 class= "floated_l">ATM Money Dispenser</h1>
+							
+							<Link to="/Login"><h1 class= "floated_l">Login</h1></Link>
+							
+							<Link to="/Register"><h1 class= "floated_l">Register</h1></Link>
+							
+							<Link to="/HOC"><h1 class= "floated_l">HOC</h1></Link>
+						</div>
 						</header>
 					</div>
 				</header>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+ import Logincount from './HOC/Logincount';
 
 class Login extends Component {
 	constructor() {
@@ -42,9 +43,9 @@ class Login extends Component {
 
 		fetch('http://spainoption-fint/api/login', {
 			method: 'POST',
-			// mode :'no-cors',  
+			 //mode :'no-cors',  
 			headers: {
-				Accept: 'application/json',
+				'Accept': 'application/json',
 				'Access-Control-Allow-Origin': '*',
 				'Content-Type': 'application/json',
 				'Access-Control-Allow-Credentials': 'true',
@@ -52,20 +53,14 @@ class Login extends Component {
 			},
 			body: JSON.stringify(this.state)
 		}).then(response => {
-			console.log(response);
-			console.log(response.UserName);
-			console.log(response.status);
-			this.setstate({
-				message: response.status
-
-			})
-
-
-		})
-			.catch(error => {
-				console.log(error)
-			})
-
+			console.log('response got');
+		//	console.log(response.UserName);
+			//console.log(response.status);
+			console.log(JSON.stringify(response));
+	}).catch(function() {
+			console.log("error");
+	});
+			
 
 		//this function is used to restrict the form to reload
 		//event.preventDefault();
@@ -92,7 +87,9 @@ class Login extends Component {
 						<input type="password" value={password} onChange={this.handlePassword} required placeholder="Enter Password" />
 
 						<p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-						<button type="submit" value='submit' className="loginbtn">Login</button>
+						<p>  Loding from HOC    {this.props.counts}</p>
+
+						<button type="submit"  value='submit' className="loginbtn">Login</button>
 					</div>
 
 					<div className="container signin">
@@ -111,4 +108,4 @@ class Login extends Component {
 
 }
 
-export default Login
+export default Logincount(Login)
