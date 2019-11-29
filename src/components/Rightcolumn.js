@@ -1,11 +1,12 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react'
+import { tsImportEqualsDeclaration } from '@babel/types';
 
 class Rightcolumn extends Component {
-	constructor(){
-		super();
-	
+	constructor(props) {
+		super(props);
+
 		this.state = {
-			one: 1,
+			one: "",
 			two: "",
 			five: "",
 			ten: "",
@@ -15,30 +16,28 @@ class Rightcolumn extends Component {
 			twohundred: "",
 			fivehundred: "",
 			twothousand: "",
-			}
-	
+		}
+
+		console.log(this.props);
+
 	};
 
-	componentDidMount(){
+
+	render() {
 
 
-	}
-
-render(){
-
-//using the method destruction
-//value ={this.state name} is replced with {name} like aLL THE THREE INPUTS FIELD
 
 
-return (
-		
+		return (
 
-			<div class="note-chart">
+
+			<div className="note-chart">
 
 				<h1> {this.props.totalAmount} </h1>
+				<h1> {this.props.submitedState} </h1>
 
 				<p>You will get following amount</p>
-				<table class="table">
+				<table className="table">
 					<tbody>
 						<tr>
 							<td><span id="note1"></span> {this.state.one} notes of Rs 1</td>
@@ -63,17 +62,17 @@ return (
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="2"><strong>Total notes Dispensed <span id="total"></span></strong></td>
+							<td colSpan="2"><strong>Total notes Dispensed <span id="total"></span></strong></td>
 						</tr>
 					</tfoot>
 				</table>
 			</div>
-	
-	
-	) 
 
 
-}
+		)
+
+
+	}
 
 
 }

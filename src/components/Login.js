@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
- import Logincount from './HOC/Logincount';
+import Logincount from './HOC/Logincount';
 
 class Login extends Component {
 	constructor() {

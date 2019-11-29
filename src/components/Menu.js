@@ -18,7 +18,7 @@ class Menu extends Component {
 				<Router>
 					<div>
 
-						<Route exact path="/" component={Header} />c
+						<Route exact path="/" component={Header} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/register" component={Registrationform} />
 						<Route exact path="/HOC" component={HOC} />

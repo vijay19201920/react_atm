@@ -53,7 +53,7 @@ const Logincount = (WrappedComponent) => {
 
       return (
 
-        <WrappedComponent {...this.props} login={this.loggedin} logout={this.logout} />
+        <WrappedComponent {...this.props} login={this.loggedin} logout={this.loggedout} />
 
       )
     }

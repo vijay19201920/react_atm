@@ -7,14 +7,7 @@ class Registrationform extends Component {
 		super();
 
 		this.state = {
-			fname: '',
-			lname: '',
-			email: '',
-			password: '',
-			country: '',
-			state: '',
-			zip: '',
-			title: '',
+			
 			loading: false,
 		};
 
@@ -23,25 +16,17 @@ class Registrationform extends Component {
 	};
 
 
-	onChange = (e) => {
-		this.setState({ [e.target.name]: e.target.value });
-}
+	changeHandler = event => {
 
-	handlePhone = (event) => {
+		console.log(event.target.textValue);
+		console.log(event.target.value);
+
 		this.setState({
-			phone: event.target.value
-		})
-	}
 
-	handleChange = (target ) => {
-		console.log(target.value )
-		this.setState({ [target.name]: target.value });
-	}
+			[event.target.textValu]: event.target.value
 
-	handlePassword = (event) => {
-		this.setState({
-			password: event.target.value
-		})
+		});
+
 	}
 
 	handleSubmit = (event) => {
@@ -50,8 +35,6 @@ class Registrationform extends Component {
 
 		console.log(this.state);
 
-
-		event.preventDefault();
 		//  const data = new FormData(this.state);
 
 		//console.log(data);
@@ -68,21 +51,14 @@ class Registrationform extends Component {
 			},
 			body: JSON.stringify(this.state)
 		}).then(response => {
-			console.log(response);
-			console.log(response.UserName);
-			console.log(response.status);
-			this.setstate({
-				message: response.status
-
-			})
-
+			console.log(response.json);
 
 		})
 			.catch(error => {
 				console.log(error)
 			})
 
-
+		event.preventDefault();
 		//this function is used to restrict the form to reload
 		//event.preventDefault();
 
@@ -91,7 +67,7 @@ class Registrationform extends Component {
 
 	render() {
 
-		const { fname, lname, email,	password,	country, state,	zip } = this.state
+		const { textValue } = this.state
 
 		return (
 
@@ -105,25 +81,25 @@ class Registrationform extends Component {
 						<hr />
 
 						<label><b>Firstname</b></label>
-						<input type="text" value={fname} onChange={this.handlePhone} placeholder="Enter Firstname" />
+						<input type="text" value={textValue} onChange={this.changeHandler} placeholder="Enter Firstname" />
 
 						<label><b>Lastname</b></label>
-						<input type="text" value={lname} onChange={this.handlePhone} placeholder="Enter Lastname" />
+						<input type="text" value={textValue} onChange={this.onChange} placeholder="Enter Lastname" />
 
 						<label ><b>Email</b></label>
-						<input type="text" value={email} onChange={this.handleChange} placeholder="Enter Email" />
+						<input type="text" value={textValue} onChange={this.onChange} placeholder="Enter Email" />
 
 						<label><b>Password</b></label>
-						<input type="password" value={password} onChange={this.handlePassword} placeholder="Enter Password" />
+						<input type="password" value={textValue} onChange={this.onChange} placeholder="Enter Password" />
 
 						<label><b>country</b></label>
-						<input type="text" value={country} onChange={this.handlePhone} placeholder="Enter country" />
+						<input type="text" value={textValue} onChange={this.onChange} placeholder="Enter country" />
 
 						<label><b>state</b></label>
-						<input type="text" value={state} onChange={this.handlePhone} placeholder="Enter state" />
+						<input type="text" value={textValue} onChange={this.onChange} placeholder="Enter state" />
 
 						<label><b>zip</b></label>
-						<input type="text" value={zip} onChange={this.handlePhone} placeholder="Enter zip" />
+						<input type="text" value={textValue} onChange={this.onChange} placeholder="Enter zip" />
 
 						<p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 						<button type="submit" value='submit' className="registerbtn">Register</button>
